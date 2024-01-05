@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from 'react'
 
 import { Product } from '../../../payload/payload-types'
-import { AddToCartButton } from '../AddToCartButton'
-import { RemoveFromCartButton } from '../RemoveFromCartButton'
 
 import classes from './index.module.scss'
 
@@ -17,7 +15,9 @@ export const priceFromJSON = (priceJSON: string, quantity: number = 1, raw?: boo
       const priceValue = parsed.unit_amount * quantity
       const priceType = parsed.type
 
-      if (raw) return priceValue.toString()
+      if (raw) {
+        return priceValue.toString()
+      }
 
       price = (priceValue / 100).toLocaleString('en-US', {
         style: 'currency',
@@ -66,15 +66,8 @@ export const Price: React.FC<{
       {typeof price?.actualPrice !== 'undefined' && price?.withQuantity !== '' && (
         <div className={classes.price}>
           <p>{price?.withQuantity}</p>
-          {quantity > 1 && (
-            <small className={classes.priceBreakdown}>{`${price.actualPrice} x ${quantity}`}</small>
-          )}
         </div>
       )}
-      {button && button === 'addToCart' && (
-        <AddToCartButton product={product} appearance="default" />
-      )}
-      {button && button === 'removeFromCart' && <RemoveFromCartButton product={product} />}
     </div>
   )
 }
