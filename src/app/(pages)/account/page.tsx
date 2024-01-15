@@ -75,7 +75,7 @@ export default async function Account() {
                       <p>{purchase}</p>
                     ) : (
                       <h4>
-                        <Link href={`/products/${purchase.slug}`}>{purchase.title}</Link>
+                        {/* <Link href={`/products/${purchase.slug}`}>{purchase.title}</Link> */}
                       </h4>
                     )}
                   </li>
